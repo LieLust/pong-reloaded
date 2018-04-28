@@ -30,7 +30,7 @@ paddle1.fillRect(20, 20, 150, 20);
 
 const paddle2 = drawingSpace.getContext("2d");
 paddle1.fillStyle = "#808099";
-paddle1.fillRect(20, 500, 150, 20);
+paddle1.fillRect(20, 600, 150, 20);
 
 const ball = drawingSpace.getContext("2d");
 ball.fillStyle="#1D1075"
