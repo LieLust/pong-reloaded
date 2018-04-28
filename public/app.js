@@ -15,7 +15,7 @@ const renderSpace = html => {
 } 
 
 const canvasSpace = `
-    <canvas id="drawingSpace" width="540" height="540"  style="border: 1px solid #000000;">
+    <canvas id="drawingSpace" width="540" height="640"  style="border: 1px solid #000000;">
     Votre navigateur ne supporte pas le Canvas HTML5
     </canvas>
     `
