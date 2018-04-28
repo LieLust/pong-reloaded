@@ -25,10 +25,10 @@ renderSpace(canvasSpace)
 const drawingSpace = document.getElementById("drawingSpace")
 
 let paddle1 = drawingSpace.getContext("2d")
-paddle1.fillStyle = "#FF0000";
+paddle1.fillStyle = "#D11D05";
 paddle1.fillRect(20, 20, 150, 20);
 
 let paddle2 = drawingSpace.getContext("2d");
-paddle1.fillStyle = "#808099";
+paddle1.fillStyle = "#133";
 paddle1.fillRect(20, 500, 150, 20);
 
