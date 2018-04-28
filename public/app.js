@@ -5,27 +5,30 @@ const render = html => {
     mainDiv.innerHTML = html
 }
 
-
-
-
 render(`<p> hello world</p>
     <div id="gameBoard"></div>`)
 
 const gameBoard= document.getElementById('gameBoard')
 
-const renderPaddles = html => {
+const renderSpace = html => {
     gameBoard.innerHTML = html
-}
-    
+} 
 
-const paddle = () => `
-    <canvas id="theCanvas" width="50" height="10"  style="border: 1px solid #000000;">
+const canvasSpace = `
+    <canvas id="drawingSpace" width="540" height="540"  style="border: 1px solid #000000;">
     Votre navigateur ne supporte pas le Canvas HTML5
     </canvas>
     `
 
 
-const paddleA = paddle()
-const paddleB = paddle()
+renderSpace(canvasSpace)
+const drawingSpace = document.getElementById("drawingSpace")
 
-renderPaddles(paddleA)
+let paddle1 = drawingSpace.getContext("2d")
+paddle1.fillStyle = "#FF0000";
+paddle1.fillRect(20, 20, 150, 20);
+
+let paddle2 = drawingSpace.getContext("2d");
+paddle1.fillStyle = "#808099";
+paddle1.fillRect(20, 500, 150, 20);
+
