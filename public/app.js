@@ -1,7 +1,15 @@
+
 const mainDiv = document.getElementById('main')
 
 const render = html => {
     mainDiv.innerHTML = html
 }
 
-render(`<h1> On joue à Pong?</h1>`)
+render(`<p> hello world</p>`)
+
+const paddle = () => `
+    <canvas id="theCanvas" width="50" height="10"  style="border: 1px solid #000000;">
+    Votre navigateur ne supporte pas le Canvas HTML5
+    </canvas>
+    `
+render(paddle())
