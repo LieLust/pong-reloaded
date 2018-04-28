@@ -5,7 +5,18 @@ const render = html => {
     mainDiv.innerHTML = html
 }
 
-render(`<p> hello world</p>`)
+
+
+
+render(`<p> hello world</p>
+    <div id="gameBoard"></div>`)
+
+const gameBoard= document.getElementById('gameBoard')
+
+const renderPaddles = html => {
+    gameBoard.innerHTML = html
+}
+    
 
 const paddle = () => `
     <canvas id="theCanvas" width="50" height="10"  style="border: 1px solid #000000;">
@@ -13,7 +24,8 @@ const paddle = () => `
     </canvas>
     `
 
+
 const paddleA = paddle()
 const paddleB = paddle()
 
-render(paddleA)
+renderPaddles(paddleA)
