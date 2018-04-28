@@ -27,4 +27,10 @@ const html = `
 
 console.log('coucou on démarre le serveur')
 
+
+app.get('*', (req, res) => {
+    res.send(html)
+    res.end()
+  })
+  
 app.listen(8080)
