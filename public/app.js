@@ -12,4 +12,8 @@ const paddle = () => `
     Votre navigateur ne supporte pas le Canvas HTML5
     </canvas>
     `
-render(paddle())
+
+const paddleA = paddle()
+const paddleB = paddle()
+
+render(paddleA)
