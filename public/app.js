@@ -21,20 +21,44 @@ const canvasSpace = `
     `
 renderSpace(canvasSpace)
 const drawingSpace = document.getElementById("drawingSpace")
+let ctx = drawingSpace.getContext("2d")
 
-const paddle1 = drawingSpace.getContext("2d")
-paddle1.fillStyle = "#D11D05";
-paddle1.fillRect(20, 20, 150, 20);
+const canvasWidth = 540
+const canvasHeight = 640
 
-const paddle2 = drawingSpace.getContext("2d");
-paddle1.fillStyle = "#133";
-paddle1.fillRect(20, 600, 150, 20);
+const width = 100
+const height = 20
+
+let x1 = canvasWidth / 2 - width / 2
+let y1 = canvasHeight -620
+
+const paddle1 = (x1, y1, width, height) => {
+    ctx.fillStyle = "133"; 
+    ctx.fillRect(x1, y1, width, height); 
+}
 
 const ball = drawingSpace.getContext("2d");
 ball.fillStyle="#1D1075"
 ball.arc(270, 320, 10, 0, 2 * Math.PI);
 ball.fill();
+//on affiche le paddle au démarrage
+paddle1(x1, y1, width, height)
 
+window.onkeydown = function(event) {  
+    let key = event.keyCode; 
+    if(key === 39 && x1<=420)
+        x1 = x1+20
+   if(key === 37 && x1>10)
+        x1 = x1-20
+		
+  	//on efface la zone du paddle1 (bande du haut)
+    
+    ctx.clearRect(0, 0, 540, 40);
+
+    //on redessine le paddle1
+    paddle1(x1,y1,width,height);
+};
+  
 
 //fonctions:
 /*
@@ -47,3 +71,12 @@ ball.fill();
 * mouvement alétoire de la balle
 * Aurélie déplacement des paddles gestion des touches et vélocité des paddles et collision paddle bord du plateau
  */
+
+ /*
+ *DOC
+ * Pour le mouvemnt du paddle 
+ * https://codepen.io/svsdesigns/pen/pvmjPG
+ * 
+ * 
+ * 
+ * */
