@@ -1,5 +1,7 @@
 
 const canvas = document.getElementById('main')
+const paddle1Score = document.getElementById("paddle1-score")
+const paddle2Score = document.getElementById("paddle2-score")
 
 const render = html => {
     canvas.innerHTML = html
@@ -7,7 +9,7 @@ const render = html => {
 
 const context = canvas.getContext("2d"),    //defini le getContext de main à 2d
         width = window.innerWidth,          //defini width à la largeur de l'écran
-        height = window.innerHeight,        //defini height à la hauteur de l'écran
+        height = window.innerHeight -100,        //defini height à la hauteur de l'écran
         ratio = window.devicePixelRatio     //defini ratio par rapport à la taille de l'écran
 
 //initialise les propriété par rapport à la taille de l'écran
@@ -76,12 +78,12 @@ class Ball{
 }
 
 class Paddle{
-    constructor(x){
+    constructor(x, paddleNum){
         this.x = x
         this.y = 20
         this.h= 150
         this.w = 20
-
+        this.paddleNum = paddleNum
         this.score = 0
     }
 
@@ -90,14 +92,17 @@ class Paddle{
         let left = this.x - this.w / 2
         
         context.fillRect(left, top, this.w, this.h);
-        console.log("score : " + this.score)
+        //console.log("score : " + this.score)
+        
+
+        this.paddleNum === 1 ?  paddle1Score.innerHTML = this.score : paddle2Score.innerHTML = this.score
     }
 }
 
 //créé une nouvelle balle
 const ball = new Ball(-6, 1)
-const paddle1 = new Paddle(20)
-const paddle2 = new Paddle(width - 40)
+const paddle1 = new Paddle(20, 1)
+const paddle2 = new Paddle(width - 40, 2)
 
 window.onkeydown = function(event) { 
     let key = event.keyCode; 
