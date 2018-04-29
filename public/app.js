@@ -44,8 +44,10 @@ class Ball{
 
         if(this.x + this.r > width){
             restartGame()
+            paddle1.score ++
         }else if(this.x - this.r < 0){
             restartGame()
+            paddle2.score ++
         }
     }
 //collision paddles-ball
@@ -79,6 +81,8 @@ class Paddle{
         this.y = 20
         this.h= 150
         this.w = 20
+
+        this.score = 0
     }
 
     draw(){
@@ -86,11 +90,12 @@ class Paddle{
         let left = this.x - this.w / 2
         
         context.fillRect(left, top, this.w, this.h);
+        console.log("score : " + this.score)
     }
 }
 
 //créé une nouvelle balle
-const ball = new Ball(-4, 1)
+const ball = new Ball(-6, 1)
 const paddle1 = new Paddle(20)
 const paddle2 = new Paddle(width - 40)
 
@@ -129,14 +134,14 @@ function animate(){                         //fonction animate c'est update du j
 
     window.onkeydown = function(event) { 
         let key = event.keyCode; 
-        if(key === 40 && paddle1.y<height - (paddle1.h / 2)) //descendre
-            paddle1.y += 60
-        if(key === 83 && paddle2.y < height - (paddle2.h / 2)) //descendre
-            paddle2.y += 60
-        if(key === 38 && paddle1.y> paddle1.h/2) //monter
-            paddle1.y -= 60
-        if(key === 90 && paddle2.y> paddle2.h/2) //monter
-            paddle2.y -= 60
+        if(key === 83 && paddle1.y < height - (paddle1.h / 2)) //descendre
+            paddle1.y += 20
+        if(key === 40 && paddle2.y < height - (paddle2.h / 2)) //descendre
+            paddle2.y += 20
+        if(key === 90 && paddle1.y > paddle1.h/2) //monter
+            paddle1.y -= 20
+        if(key === 38 && paddle2.y > paddle2.h/2) //monter
+            paddle2.y -= 20
     }                          
     requestAnimationFrame(animate)          //appelle la fonction animate 60 fois par seconde
 }
