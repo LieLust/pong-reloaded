@@ -15,8 +15,11 @@ const html = `
             <link rel="stylesheet" href="/css/style.css">
         </head>
         <body>
-            <div id="gameInfo">
-                <p>Left: <span id="paddle1-score"></span> Right: <span id="paddle2-score"></span></p>
+            <div id="gameInfo" class="container">
+                <div class="row  justify-content-between">
+                    <p id="paddle1" class="col-sm-6 alert alert-secondary">Left: <span id="paddle1-score"></span></p>
+                    <p id="paddle2" class="col-sm-6 alert alert-secondary">Right: <span id="paddle2-score"></span></p>
+                </div>
             </div>
             <canvas id="main"></canvas>
 

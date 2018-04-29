@@ -1,5 +1,7 @@
 
 const canvas = document.getElementById('main')
+const paddle1Html = document.getElementById("paddle1")
+const paddle2Html = document.getElementById("paddle2")
 const paddle1Score = document.getElementById("paddle1-score")
 const paddle2Score = document.getElementById("paddle2-score")
 
@@ -91,11 +93,13 @@ class Paddle{
         let top = this.y - this.h / 2
         let left = this.x - this.w / 2
         
-        context.fillRect(left, top, this.w, this.h);
-        //console.log("score : " + this.score)
-        
+        context.fillRect(left, top, this.w, this.h)
+        if (this.paddleNum === 1) {
+            paddle1Score.innerHTML = this.score
+        } else {
+            paddle2Score.innerHTML = this.score
+        } 
 
-        this.paddleNum === 1 ?  paddle1Score.innerHTML = this.score : paddle2Score.innerHTML = this.score
     }
 }
 
@@ -130,7 +134,7 @@ function animate(){                         //fonction animate c'est update du j
 
     ball.paddles(paddle1)
     ball.paddles(paddle2)
-                             //appelle de la fonction qui dessine la balle
+
     ball.update()                           //appelle de la fonction qui update la balle
     ball.draw()                              //appelle de la fonction qui dessine la balle
    
@@ -147,7 +151,20 @@ function animate(){                         //fonction animate c'est update du j
             paddle1.y -= 20
         if(key === 38 && paddle2.y > paddle2.h/2) //monter
             paddle2.y -= 20
-    }                          
+    } 
+    
+    if (paddle1.score > paddle2.score) {
+        paddle1Html.className = "alert alert-success"
+        paddle2Html.className = "alert alert-danger"
+    }
+    else if (paddle1.score === paddle2.score) {
+        paddle1Html.className = "alert alert-primary"
+        paddle2Html.className = "alert alert-primary"
+        }
+    else {
+        paddle2Html.className = "alert alert-success"
+        paddle1Html.className = "alert alert-danger"
+    }
     requestAnimationFrame(animate)          //appelle la fonction animate 60 fois par seconde
 }
 
