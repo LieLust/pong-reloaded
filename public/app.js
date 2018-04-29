@@ -48,7 +48,7 @@ class Ball{
             restartGame()
         }
     }
-
+//collision paddles-ball
     paddles(paddle){
         let bLeft = this.x - this.r
         let bRight = this.x + this.r
@@ -92,6 +92,7 @@ class Paddle{
 //créé une nouvelle balle
 const ball = new Ball(-4, 1)
 const paddle1 = new Paddle(20)
+const paddle2 = new Paddle(width - 40)
 
 window.onkeydown = function(event) { 
     let key = event.keyCode; 
@@ -117,10 +118,12 @@ function animate(){                         //fonction animate c'est update du j
     context.stroke()
 
     ball.paddles(paddle1)
+    ball.paddles(paddle2)
     ball.update()                           //appelle de la fonction qui l'update la balle
     ball.draw()                              //appelle de la fonction qui dessine la balle
    
     paddle1.draw() 
+    paddle2.draw()
                               
     requestAnimationFrame(animate)          //appelle la fonction animate 60 fois par seconde
 }
