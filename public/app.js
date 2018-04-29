@@ -1,36 +1,31 @@
 
-const mainDiv = document.getElementById('main')
+const canvas = document.getElementById('main')
 
 const render = html => {
-    mainDiv.innerHTML = html
-}
-
-render(`<p> hello world</p>
-    <div id="gameBoard"></div>`)
-
-const gameBoard= document.getElementById('gameBoard')
-
-const renderSpace = html => {
-    gameBoard.innerHTML = html
+    canvas.innerHTML = html
 } 
 
-const canvasSpace = `
-    <canvas id="drawingSpace" width="540" height="640"  style="border: 1px solid #000000;">
-    Votre navigateur ne supporte pas le Canvas HTML5
-    </canvas>
-    `
-renderSpace(canvasSpace)
-const drawingSpace = document.getElementById("drawingSpace")
+const context = canvas.getContext("2d"),    //defini le getContext de main à 2d
+        width = window.innerWidth,          //defini width à la largeur de l'écran
+        height = window.innerHeight,        //defini height à la hauteur de l'écran
+        ratio = window.devicePixelRatio     //defini ratio par rapport à la taille de l'écran
 
-const paddle1 = drawingSpace.getContext("2d")
+//initialise les propriété par rapport à la taille de l'écran
+canvas.width = width * ratio
+canvas.height = height * ratio
+canvas.style.width = width + "px"
+canvas.style.height = height + "px"
+context.scale(ratio, ratio)
+
+const paddle1 = canvas.getContext("2d")
 paddle1.fillStyle = "#D11D05";
-paddle1.fillRect(20, 20, 150, 20);
+paddle1.fillRect(20, 20, 20, 150);
 
-const paddle2 = drawingSpace.getContext("2d");
+const paddle2 = canvas.getContext("2d");
 paddle1.fillStyle = "#133";
-paddle1.fillRect(20, 600, 150, 20);
+paddle1.fillRect(20, 600, 20, 150);
 
-const ball = drawingSpace.getContext("2d");
+const ball = canvas.getContext("2d");
 ball.fillStyle="#1D1075"
 ball.arc(270, 320, 10, 0, 2 * Math.PI);
 ball.fill();
