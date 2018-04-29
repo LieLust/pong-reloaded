@@ -43,6 +43,22 @@ class Ball{
         }
     }
 
+    paddles(paddle){
+        let bLeft = this.x - this.r
+        let bRight = this.x + this.r
+        let bTop = this.y - this.r
+        let bBottom = this.y + this.r
+
+        let pLeft = paddle.x - paddle.w / 2
+        let pRight = paddle.x + paddle.w / 2
+        let pTop = paddle.y - paddle.h / 2
+        let pBottom = paddle.y + paddle.h / 2
+
+        if(bLeft < pRight && bRight > pLeft && bTop < pBottom && bBottom > pTop){
+            this.vx *= -1
+        }
+    }
+
     //fonction qui va géré l'affichage de la balle
     draw(){
         context.beginPath()
@@ -52,21 +68,33 @@ class Ball{
 }
 
 class Paddle{
-    constructor(x, y, h, w){
+    constructor(x){
         this.x = x
-        this.y = y
-        this.h= h
-        this.w = w
+        this.y = height / 2
+        this.h= 150
+        this.w = 20
     }
 
-    drawPaddle(){
-        context.fillRect(this.x, this.y, this.w, this.h);
+    draw(){
+        let top = this.y - this.h / 2
+        let left = this.x - this.w / 2
+        
+        context.fillRect(left, top, this.w, this.h);
     }
 }
 
 //créé une nouvelle balle
-const ball = new Ball(2, 6)
-const paddle1 = new Paddle(20,20,150, 20)
+const ball = new Ball(-4, 1)
+const paddle1 = new Paddle(20)
+
+window.onkeydown = function(event) { 
+    let key = event.keyCode; 
+    if(key === 40){         //descendre
+        paddle1.y += 60
+    } else if(key === 38){  //monter
+        paddle1.y -= 60
+    } 
+}
 
 animate() //appelle de la fonction animate
 function animate(){                         //fonction animate c'est update du jeu
@@ -77,17 +105,12 @@ function animate(){                         //fonction animate c'est update du j
     context.lineTo(width / 2, height)
     context.stroke()
 
+    ball.paddles(paddle1)
     ball.update()                           //appelle de la fonction qui l'update la balle
     ball.draw()                              //appelle de la fonction qui dessine la balle
    
-    paddle1.drawPaddle() 
-    window.onkeydown = function(event) { 
-        let key = event.keyCode; 
-        if(key === 40 && paddle1.y<height - (paddle1.y /2)) //descendre
-            paddle1.y += 60
-        if(key === 38 && paddle1.y> paddle1.y /2) //monter
-            paddle1.y -= 60
-    }                          
+    paddle1.draw() 
+                              
     requestAnimationFrame(animate)          //appelle la fonction animate 60 fois par seconde
 }
 
