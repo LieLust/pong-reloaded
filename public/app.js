@@ -52,11 +52,11 @@ class Ball{
 }
 
 class Paddle{
-    constructor(x, y, h, w){
+    constructor(x){
         this.x = x
-        this.y = y
-        this.h= h
-        this.w = w
+        this.y = 20
+        this.h= 150
+        this.w = 20
     }
 
     drawPaddle(){
@@ -66,7 +66,8 @@ class Paddle{
 
 //créé une nouvelle balle
 const ball = new Ball(2, 6)
-const paddle1 = new Paddle(20,20,150, 20)
+const paddle1 = new Paddle(20)
+const paddle2 = new Paddle(width - 40)
 
 animate() //appelle de la fonction animate
 function animate(){                         //fonction animate c'est update du jeu
@@ -81,12 +82,19 @@ function animate(){                         //fonction animate c'est update du j
     ball.draw()                              //appelle de la fonction qui dessine la balle
    
     paddle1.drawPaddle() 
+    paddle2.drawPaddle()
     window.onkeydown = function(event) { 
+       
         let key = event.keyCode; 
+        console.log(key)
         if(key === 40 && paddle1.y<height - (paddle1.y /2)) //descendre
             paddle1.y += 60
+        if(key === 83 && paddle2.y < height - (paddle2.y /2)) //descendre
+            paddle2.y += 60
         if(key === 38 && paddle1.y> paddle1.y /2) //monter
             paddle1.y -= 60
+        if(key === 90 && paddle2.y> paddle2.y /2) //monter
+            paddle2.y -= 60
     }                          
     requestAnimationFrame(animate)          //appelle la fonction animate 60 fois par seconde
 }
