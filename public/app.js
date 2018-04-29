@@ -82,11 +82,10 @@ function animate(){                         //fonction animate c'est update du j
    
     paddle1.drawPaddle() 
     window.onkeydown = function(event) { 
-        console.log(event.keyCode) 
         let key = event.keyCode; 
-        if(key === 40 && paddle1.y<height) //descendre
+        if(key === 40 && paddle1.y<height - (paddle1.y /2)) //descendre
             paddle1.y += 60
-        if(key === 38 && paddle1.y>0) //monter
+        if(key === 38 && paddle1.y> paddle1.y /2) //monter
             paddle1.y -= 60
     }                          
     requestAnimationFrame(animate)          //appelle la fonction animate 60 fois par seconde
