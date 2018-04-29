@@ -78,15 +78,13 @@ function animate(){                         //fonction animate c'est update du j
     context.lineTo(width / 2, height)
     context.stroke()
 
-    ball.update()                           //appelle de la fonction qui l'update la balle
+    ball.update()                           //appelle de la fonction qui update la balle
     ball.draw()                              //appelle de la fonction qui dessine la balle
    
     paddle1.drawPaddle() 
     paddle2.drawPaddle()
     window.onkeydown = function(event) { 
-       
         let key = event.keyCode; 
-        console.log(key)
         if(key === 40 && paddle1.y<height - (paddle1.y /2)) //descendre
             paddle1.y += 60
         if(key === 83 && paddle2.y < height - (paddle2.y /2)) //descendre
