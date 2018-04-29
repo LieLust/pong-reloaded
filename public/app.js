@@ -41,6 +41,12 @@ class Ball{
         } else if(this.y - this.r < 0){
             this.vy *= -1
         }
+
+        if(this.x + this.r > width){
+            restartGame()
+        }else if(this.x - this.r < 0){
+            restartGame()
+        }
     }
 
     paddles(paddle){
@@ -94,6 +100,11 @@ window.onkeydown = function(event) {
     } else if(key === 38){  //monter
         paddle1.y -= 60
     } 
+}
+
+const restartGame = () =>{
+    ball.x = width / 2
+    ball.y = height / 2
 }
 
 animate() //appelle de la fonction animate
