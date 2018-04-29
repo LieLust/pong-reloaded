@@ -59,16 +59,6 @@ class Paddle{
         this.w = w
     }
 
-    update() {               //fonction update qui va géré l'update de la balle
-        window.onkeydown = function(event) {  
-            let key = event.keyCode; 
-            if(key === 39 && x<=420)
-                this.x += 20
-            if(key === 37 && x>10)
-                this.x -= 20
-        }
-    }
-
     drawPaddle(){
         context.fillRect(this.x, this.y, this.w, this.h);
     }
@@ -76,7 +66,7 @@ class Paddle{
 
 //créé une nouvelle balle
 const ball = new Ball(2, 6)
-const paddle1 = new Paddle(20,20,20, 150)
+const paddle1 = new Paddle(20,20,150, 20)
 
 animate() //appelle de la fonction animate
 function animate(){                         //fonction animate c'est update du jeu
@@ -89,18 +79,18 @@ function animate(){                         //fonction animate c'est update du j
 
     ball.update()                           //appelle de la fonction qui l'update la balle
     ball.draw()                              //appelle de la fonction qui dessine la balle
-    paddle1.update() 
-    paddle1.drawPaddle()                          
+   
+    paddle1.drawPaddle() 
+    window.onkeydown = function(event) { 
+        console.log(event.keyCode) 
+        let key = event.keyCode; 
+        if(key === 40 && paddle1.y<height) //descendre
+            paddle1.y += 60
+        if(key === 38 && paddle1.y>0) //monter
+            paddle1.y -= 60
+    }                          
     requestAnimationFrame(animate)          //appelle la fonction animate 60 fois par seconde
 }
-
-// const paddle1 = canvas.getContext("2d")
-// paddle1.fillStyle = "#D11D05";
-// paddle1.fillRect(20, 20, 20, 150);
-
-// const paddle2 = canvas.getContext("2d");
-// paddle1.fillStyle = "#133";
-// paddle1.fillRect(20, 600, 20, 150);
 
 //fonctions:
 /*
