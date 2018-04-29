@@ -76,7 +76,7 @@ class Ball{
 class Paddle{
     constructor(x){
         this.x = x
-        this.y = height / 2
+        this.y = 20
         this.h= 150
         this.w = 20
     }
@@ -117,14 +117,27 @@ function animate(){                         //fonction animate c'est update du j
     context.lineTo(width / 2, height)
     context.stroke()
 
+
     ball.paddles(paddle1)
     ball.paddles(paddle2)
-    ball.update()                           //appelle de la fonction qui l'update la balle
+                             //appelle de la fonction qui dessine la balle
+    ball.update()                           //appelle de la fonction qui update la balle
     ball.draw()                              //appelle de la fonction qui dessine la balle
    
     paddle1.draw() 
     paddle2.draw()
-                              
+
+    window.onkeydown = function(event) { 
+        let key = event.keyCode; 
+        if(key === 40 && paddle1.y<height - (paddle1.h / 2)) //descendre
+            paddle1.y += 60
+        if(key === 83 && paddle2.y < height - (paddle2.h / 2)) //descendre
+            paddle2.y += 60
+        if(key === 38 && paddle1.y> paddle1.h/2) //monter
+            paddle1.y -= 60
+        if(key === 90 && paddle2.y> paddle2.h/2) //monter
+            paddle2.y -= 60
+    }                          
     requestAnimationFrame(animate)          //appelle la fonction animate 60 fois par seconde
 }
 
