@@ -28,14 +28,14 @@ class Ball{
     }
 
     update(){               //fonction update qui va géré l'update de la balle
-        this.colision()     //appele de la fonction colision
+        this.collision()     //appele de la fonction collision
 
         this.x += this.vx   //gere l'update de la position x de la balle par rapport à la velocité vx de la balle
         this.y += this.vy   //gere l'update de la position y de la balle par rapport à la velocité vy de la balle
     }
 
-    //fonction qui va géré la colision de la balle avec l'écran
-    colision(){
+    //fonction qui va géré la collision de la balle avec l'écran
+    collision(){
         if(this.y + this.r > height){    
             this.vy *= -1
         } else if(this.y - this.r < 0){
