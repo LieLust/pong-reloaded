@@ -1,11 +1,16 @@
 import { canvas, context, width, height, ratio } from './canvas.js'
+import Paddle from './paddle.js'
+
+export { paddle1, paddle2, Ball }
+const paddle1 = new Paddle(20, 1)
+const paddle2 = new Paddle(width - 40, 2)
 
 const restartGame = (laBalle) =>{
     laBalle.x = width / 2
     laBalle.y = height / 2
 }
 
-export class Ball{
+class Ball{
     constructor(vx, vy){    //construction de la balle
         this.x = width / 2  //position x de la balle definie à la moitié de la largeur de l'écran
         this.y = height / 2 //position y de la balle definie à la moitié de la hauteur de l'écran
@@ -62,4 +67,4 @@ export class Ball{
 }
 
 
-export default Ball
+export default { paddle1, paddle2, Ball }

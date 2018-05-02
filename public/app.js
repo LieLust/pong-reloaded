@@ -1,8 +1,10 @@
 import { render, renderGameInfo, renderInCanvas } from './modules/utils.js'
 import { gameInfo, paddle1Html, paddle2Html, paddle1Score, paddle2Score, footer } from './modules/dom-references.js'
 import { canvas, context, width, height, ratio } from './modules/canvas.js'
-import Ball from './modules/ball.js'
-import Paddle from './modules/paddle.js'
+import { paddle1, paddle2, Ball } from './modules/ball.js'
+//import Paddle from './modules/paddle.js'
+// import paddle1 from './modules/ball.js'
+// import paddle2 from './modules/ball.js'
 import test from './modules/test.js'
 
 test()
@@ -17,10 +19,10 @@ canvas.style.height = height + "px"
 context.scale(ratio, ratio)
 
 //créer une nouvelle balle et deux paddles
-const ball = new Ball(-6, 1)
-const paddle1 = new Paddle(20, 1)
-const paddle2 = new Paddle(width - 40, 2)
 
+// const paddle1 = new Paddle(20, 1)
+// const paddle2 = new Paddle(width - 40, 2)
+const ball = new Ball(-6, 1, paddle1, paddle2)
 
 animate() //appelle de la fonction animate
 function animate(){                         //fonction animate c'est update du jeu
