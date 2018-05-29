@@ -1,6 +1,10 @@
 # pong-reloaded
 Un jeu de pong
 
+key :
+- player 1 : Z/S
+- player 2 : up/down
+
 To do:
 
 * load
